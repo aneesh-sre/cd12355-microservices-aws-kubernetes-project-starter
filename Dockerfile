@@ -35,4 +35,4 @@ ENV DB_USERNAME=myuser \
 EXPOSE 5153
 
 # Run the application
-CMD ["python3", "app.py"]
+CMD ["python3", "appp.py"]
