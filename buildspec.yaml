@@ -20,4 +20,3 @@ phases:
       - echo Pushing the Docker image to ECR...
       - docker push $REPOSITORY_URI:coworking-app-$IMAGE_TAG
 
-
