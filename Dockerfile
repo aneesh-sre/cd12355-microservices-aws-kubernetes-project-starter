@@ -1,5 +1,5 @@
 # Use Amazon Linux 2023 base image (hosted on AWS ECR, no pull limits)
-FROM amazonlinux:2023
+FROM public.ecr.aws/amazonlinux/amazonlinux:2023
 
 # Set working directory
 WORKDIR /app
