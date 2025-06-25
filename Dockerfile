@@ -19,8 +19,7 @@ RUN dnf -y update && \
 
 # Copy and install Python dependencies
 COPY requirements.txt .
-RUN pip3 install --upgrade pip setuptools wheel && \
-    pip3 install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 # Copy the application code
 COPY . .
