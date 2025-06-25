@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI)
+      - IMAGE_TAG=$CODEBUILD_BUILD_NUMBER
+
+  build:
+    commands:
+      - echo Building Docker image...
+      - docker build -t coworking-app:$IMAGE_TAG .
+      - docker tag coworking-app:$IMAGE_TAG $REPOSITORY_URI:coworking-app-$IMAGE_TAG
+
+  post_build:
+    commands:
+      - echo Pushing Docker image to ECR...
+      - docker push $REPOSITORY_URI:coworking-app-$IMAGE_TAG
+
+artifacts:
+  files: '**/*'
