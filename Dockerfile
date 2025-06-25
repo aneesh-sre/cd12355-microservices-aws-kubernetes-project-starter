@@ -1,5 +1,5 @@
 # Use Ubuntu base image
-FROM Ubuntu:22.04
+FROM ubuntu:22.04
 
 # Set working directory
 WORKDIR /app
