@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 205144097027.dkr.ecr.us-east-1.amazonaws.com
+      - export IMAGE_TAG="$CODEBUILD_BUILD_NUMBER"
+
+  build:
+    commands:
+      - docker build -t coworking-app:$IMAGE_TAG .
+      - docker tag coworking-app:$IMAGE_TAG 205144097027.dkr.ecr.us-east-1.amazonaws.com/coworking-app-repo:coworking-app-$IMAGE_TAG
+
+  post_build:
+    commands:
+      - docker push 205144097027.dkr.ecr.us-east-1.amazonaws.com/coworking-app-repo:coworking-app-$IMAGE_TAG
